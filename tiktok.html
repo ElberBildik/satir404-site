@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yetkilendirme</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:48px 20px;background:#f3ede3;color:#1e1a16}
+code{display:block;word-break:break-all;background:#fff;border:2px solid #1e1a16;border-radius:12px;padding:16px;font-size:15px;margin:16px 0}
+button{background:#d9663c;color:#fff;border:0;border-radius:999px;padding:12px 24px;font-size:16px;font-weight:700;cursor:pointer}</style></head>
+<body>
+<h1>Yetkilendirme kodu</h1>
+<p id="durum">Kod okunuyor…</p>
+<code id="kod"></code>
+<button onclick="navigator.clipboard.writeText(document.getElementById('kod').textContent).then(()=>this.textContent='Kopyalandı ✓')">Kodu kopyala</button>
+<script>
+  const p = new URLSearchParams(location.search);
+  const kod = p.get("code"), hata = p.get("error_description") || p.get("error");
+  document.getElementById("kod").textContent = kod || "";
+  document.getElementById("durum").textContent = kod ? "Bu kodu kopyalayıp Claude Code'daki pencereye yapıştır. Kod birkaç dakika geçerlidir." : ("Kod bulunamadı. " + (hata || ""));
+</script>
+</body></html>
